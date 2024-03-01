@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+
+            <form [formGroup]="userForm">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">First Name </label>
+                    <div class="col-10">
+                        <input type="text" class="form-control " formControlName="firstName">
+                        @if (userForm.get('firstName')?.hasError('required') && userForm.get('firstName')?.touched) {
+                        <p class="error">
+                            First Name is required
+                        </p>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Last Name </label>
+                    <div class="col-10">
+                        <input type="text" class="form-control " formControlName="lastName">
+                        @if (userForm.get('lastName')?.hasError('required') && userForm.get('lastName')?.touched) {
+                        <p class="error">
+                            Last Name is required
+                        </p>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Address </label>
+                    <div class="col-10">
+                        <input type="text" class="form-control " formControlName="address">
+                        @if (userForm.get('address')?.hasError('required') && userForm.get('address')?.touched) {
+                        <p class="error">
+                            Address is required
+                        </p>
+                        }
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Email ID </label>
+                    <div class="col-10">
+                        <input type="text" class="form-control " formControlName="email">
+                        @if (userForm.get('email')?.hasError('required') && userForm.get('email')?.touched) {
+                        <p class="error">
+                            Email ID is required
+                        </p>
+                        }
+
+                        @if (userForm.get('email')?.hasError('email') && userForm.get('email')?.touched) {
+                        <p class="error">
+                            Please enter a valid email address
+                        </p>
+                        }
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Phone Number </label>
+                    <div class="col-10">
+                        <input type="text" class="form-control " formControlName="phoneNo">
+                        @if (userForm.get('phoneNo')?.hasError('required') && userForm.get('phoneNo')?.touched) {
+                        <p class="error">
+                            Phone Number is required
+                        </p>
+                        }
+
+                        @if (userForm.get('phoneNo')?.hasError('pattern')) {
+                        <p class="error">
+                            Phone Number must contain only numbers
+                        </p>
+                        }
+
+                        @if (userForm.get('phoneNo')?.hasError('maxlength') &&
+                        !userForm.get('phoneNo')?.hasError('pattern')) {
+                        <p class="error">
+                            Phone Number must not exceed 10 characters
+                        </p>
+                        }
+
+                        @if (userForm.get('phoneNo')?.hasError('minlength') &&
+                        !userForm.get('phoneNo')?.hasError('pattern')) {
+                        <p class="error">
+                            Phone Number must be at least 10 characters
+                        </p>
+                        }
+                    </div>
+                </div>
+
+                <button type="reset" class="btn btn-secondary ml-1" (click)="onReset()">Reset </button>
+                <button type="submit" class="btn btn-primary ml-3" style="margin-left:10px" (click)="onSubmit()" [disabled]="userForm.invalid">Submit
+                </button>            </form>
+
+        </div>
+    </div>
+</div>
